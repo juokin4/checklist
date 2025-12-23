@@ -1,0 +1,6 @@
+{
+  "appId": "com.example.checklist",
+  "appName": "Checklist",
+  "webDir": "public",
+  "bundledWebRuntime": false
+}
