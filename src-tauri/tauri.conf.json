@@ -1,0 +1,29 @@
+{
+  "build": {
+    "beforeDevCommand": "",
+    "beforeBuildCommand": "",
+    "devPath": "../src/index.html",
+    "distDir": "../src"
+  },
+  "package": {
+    "productName": "Legal Checklist",
+    "version": "0.1.0"
+  },
+  "tauri": {
+    "windows": [
+      {
+        "title": "Legal Checklist",
+        "width": 1100,
+        "height": 720
+      }
+    ],
+    "security": {
+      "csp": null
+    },
+    "bundle": {
+      "active": true,
+      "identifier": "com.example.legal-checklist",
+      "icon": []
+    }
+  }
+}
