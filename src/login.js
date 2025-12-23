@@ -8,7 +8,8 @@ const DEMO_USER = {
 const loginForm = document.getElementById("loginForm");
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
-const loginError = document.getElementById("loginError");
+const loginHint = document.querySelector(".login-hint");
+let loginError;
 
 function redirectToChecklist() {
     window.location.href = "index.html";
@@ -18,12 +19,30 @@ function isAuthenticated() {
     return Boolean(localStorage.getItem(AUTH_TOKEN_KEY));
 }
 
+function ensureErrorElement() {
+    if (loginError || !loginHint) {
+        return loginError;
+    }
+
+    loginError = document.createElement("p");
+    loginError.setAttribute("role", "alert");
+    loginError.setAttribute("aria-live", "polite");
+    loginError.style.minHeight = "18px";
+    loginError.style.fontSize = "12px";
+    loginError.style.color = "#dc2626";
+    loginError.style.margin = "8px 0 0";
+    loginError.style.textAlign = "center";
+    loginHint.insertAdjacentElement("afterend", loginError);
+    return loginError;
+}
+
 function setError(message) {
-    if (!loginError) {
+    const errorElement = ensureErrorElement();
+    if (!errorElement) {
         return;
     }
 
-    loginError.textContent = message;
+    errorElement.textContent = message;
 }
 
 if (isAuthenticated()) {
