@@ -1,165 +1,283 @@
-/* =========================================================
-   1) TÜM SİTEDE YAZI TİPİ: TIMES NEW ROMAN
-   ========================================================= */
-body {
-    font-family: "Times New Roman", Times, serif !important;
-    margin: 0;
-    padding: 0;
-    background-color: #eef1f5;
+:root {
+    --bg: #f5f7fb;
+    --fg: #111827;
+    --card-bg: #ffffff;
+    --accent: #14532d;
+    --accent-soft: #dcfce7;
+    --border: #e5e7eb;
+    --muted: #6b7280;
+    --shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
 }
-
-/* =========================================================
-   2) HEADER
-   ========================================================= */
-header {
-    background-color: #0056b3;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* =========================================================
-   3) LAYOUT
-   ========================================================= */
-.container {
-    display: flex;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* =========================================================
-   4) KONTROL PANELİ
-   ========================================================= */
-.control-panel {
-    display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
-    padding: 15px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    flex-wrap: wrap;
-    width: 65%;
-}
-
-#checklist-selector,
-#search-bar {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    flex-grow: 1;
-    font-size: 1em;
-}
-
-/* =========================================================
-   5) CHECKLIST ALANI
-   ========================================================= */
-.checklist-area {
-    width: 65%;
-    min-height: 400px;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.placeholder-text {
-    color: #6c757d;
-    text-align: center;
-    padding-top: 50px;
-}
-
-/* =========================================================
-   6) CHECKLIST ITEM
-   ========================================================= */
-.checklist-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.checklist-item input[type="checkbox"] {
-    margin-right: 15px;
-    transform: scale(1.5);
-}
-
-.checklist-item label {
-    font-size: 1.1em;
-    cursor: pointer;
-    flex-grow: 1;
-    color: #111; /* NORMAL MOD → siyah */
-}
-
-/* =========================================================
-   7) PROGRESS ALANI
-   ========================================================= */
-.progress-container {
-    width: 30%;
-    height: fit-content;
-    margin-left: 5%;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    text-align: center;
-}
-
-#progress-chart {
-    max-height: 250px;
-    margin-bottom: 10px;
-}
-
-#progress-text {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #0056b3;
-}
-
-/* =========================================================
-   8) DARK MODE (Sadece checklist yazıları siyah olacak!)
-   ========================================================= */
 
 body.dark {
-    background-color: #020617;
+    --bg: #020617;
+    --fg: #e5e7eb;
+    --card-bg: #020617;
+    --accent: #22c55e;
+    --accent-soft: #064e3b;
+    --border: #1f2937;
+    --muted: #9ca3af;
 }
 
-body.dark header {
-    background-color: #0f172a;
+* {
+    box-sizing: border-box;
 }
 
-/* Checklist arka planı değişebilir ama yazı SİYAH kalacak */
-body.dark .checklist-item {
-    background: #e2e8f0 !important; /* Açık gri arkaplan → siyaha kontrast */
-    border-color: #94a3b8 !important;
+body {
+    margin: 0;
+    font-family: "Times New Roman", Times, serif;
+    background: radial-gradient(circle at top, #bbf7d0 0, var(--bg) 35%);
+    color: var(--fg);
+    padding: clamp(16px, 3vw, 32px);
+    min-height: 100vh;
 }
 
-body.dark .checklist-item label {
-    color: #000 !important;   /* 🔥 İSTEDİĞİN: Yazılar SİYAH */
+.app-container {
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-body.dark .checklist-item input[type="checkbox"] {
-    accent-color: #22c55e;  /* güzel bir yeşil */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
 }
 
-/* Kontrollü alanlar gece modunda bozulmasın */
-body.dark .checklist-area,
-body.dark .control-panel,
-body.dark .progress-container {
-    background: #0f172a;
-    color: #e5e7eb;
+header h1 {
+    margin: 0;
+    font-size: clamp(22px, 3vw, 28px);
+    letter-spacing: 0.03em;
 }
 
-/* Ama checklist yazıları yine siyah kalacak */
-body.dark .checklist-area label {
-    color: #000 !important;
+header p {
+    margin: 6px 0 0;
+    font-size: 13px;
+    color: var(--muted);
 }
 
-/* Dark mode'da checklist kutuları beyaz, yazılar siyah olsun */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.pill-button {
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.85);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.pill-button:hover {
+    background: #e5e7eb55;
+}
+
+.pill-button:active {
+    transform: translateY(1px);
+}
+
+body.dark .pill-button {
+    background: #020617;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: clamp(16px, 3vw, 22px);
+    box-shadow: var(--shadow);
+}
+
+.card h2 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+.card small {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+label {
+    font-size: 13px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+}
+
+select,
+input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--fg);
+}
+
+body.dark select,
+body.dark input[type="text"] {
+    background: #020617;
+}
+
+.field-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.field-inline {
+    display: flex;
+    gap: 10px;
+}
+
+.field-inline > div {
+    flex: 1;
+}
+
+.actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.btn {
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #f9fafb;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    box-shadow: 0 8px 16px rgba(15, 23, 42, 0.08);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-primary {
+    border-color: var(--accent);
+    color: #ffffff;
+    background: var(--accent);
+}
+
+.progress-card {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #f9fafb;
+    border: 1px dashed var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+}
+
+body.dark .progress-card {
+    background: rgba(15, 23, 42, 0.65);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    border-radius: 999px;
+    background: #e5e7eb;
+    overflow: hidden;
+}
+
+.progress-bar-inner {
+    height: 100%;
+    width: 0%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+    transition: width 0.25s ease-out;
+}
+
+.checklist-header-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.current-title {
+    font-size: 12px;
+    color: var(--muted);
+    max-width: 60%;
+    text-align: right;
+}
+
+#checklistContainer {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.check-item {
+    border-radius: 10px;
+    padding: 10px 12px;
+    background: #f3f4f6;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+}
+
+.check-item input[type="checkbox"] {
+    margin-top: 2px;
+    transform: scale(1.15);
+}
+
+.check-item label {
+    margin: 0;
+    line-height: 1.4;
+    color: #111827;
+}
+
+.empty-state {
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px dashed var(--border);
+    font-size: 13px;
+    color: var(--muted);
+    background: rgba(249, 250, 251, 0.8);
+}
+
 body.dark .check-item {
     background: #ffffff;
     border-color: #cbd5e1;
@@ -169,8 +287,71 @@ body.dark .check-item {
 body.dark .check-item label {
     color: #000000;
 }
-/* İlerleme başlığı ve oran metinleri her zaman siyah olsun */
+
+body.dark .check-item input[type="checkbox"] {
+    accent-color: #22c55e;
+}
+
 .progress-top span.label,
 .progress-top span.value {
-    color: #000000 !important;
+    color: #000000;
+}
+
+@media (max-width: 960px) {
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .current-title {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 720px) {
+    header {
+        align-items: flex-start;
+    }
+
+    .pill-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .field-inline {
+        flex-direction: column;
+    }
+
+    .checklist-header-line {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .current-title {
+        text-align: left;
+    }
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 16px;
+    }
+
+    .btn,
+    .pill-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .actions-row {
+        flex-direction: column;
+    }
+
+    .check-item {
+        font-size: 14px;
+    }
+
+    select,
+    input[type="text"] {
+        font-size: 16px;
+    }
 }
