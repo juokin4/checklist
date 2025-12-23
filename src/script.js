@@ -1,3 +1,11 @@
+const AUTH_TOKEN_KEY = "checklist_auth_token";
+const AUTH_USER_KEY = "checklist_auth_user";
+
+const hasSession = Boolean(localStorage.getItem(AUTH_TOKEN_KEY));
+if (!hasSession) {
+    window.location.href = "login.html";
+}
+
 // -----------------------------
 // CHECKLIST VERİSİ BAŞLANGICI
 // -----------------------------
@@ -1464,7 +1472,16 @@ checklistContainer.addEventListener("change", () => {
 // --------------------------------------------
 // 7️⃣ Dark Mode Kaydet & Yükle
 // --------------------------------------------
+const logoutButton = document.getElementById("logoutButton");
 const darkToggle = document.getElementById("darkToggle");
+
+if (logoutButton) {
+    logoutButton.addEventListener("click", () => {
+        localStorage.removeItem(AUTH_TOKEN_KEY);
+        localStorage.removeItem(AUTH_USER_KEY);
+        window.location.href = "login.html";
+    });
+}
 
 darkToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark");

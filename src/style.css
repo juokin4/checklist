@@ -226,6 +226,37 @@ body.dark .progress-card {
     transition: width 0.25s ease-out;
 }
 
+.header-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.login-card {
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.login-card h1 {
+    margin: 10px 0 4px;
+    font-size: 22px;
+}
+
+.login-form {
+    margin-top: 20px;
+    display: grid;
+    gap: 12px;
+    text-align: left;
+}
+
+.login-hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0;
+    text-align: center;
+}
+
 .checklist-header-line {
     display: flex;
     justify-content: space-between;
